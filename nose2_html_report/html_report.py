@@ -77,8 +77,7 @@ class HTMLReporter(Plugin):
                 exception_type = event.exc_info[0]
                 exception_message = event.exc_info[1]
                 exception_traceback = event.exc_info[2]
-                formatted_traceback = ''.join(traceback.format_exception(
-                    exception_type, exception_message, exception_traceback))
+                formatted_traceback = '{} {} {}'.format(exception_type, exception_message, exception_traceback)
 
         if event.outcome in self.summary_stats:
             self.summary_stats[event.outcome] += 1
