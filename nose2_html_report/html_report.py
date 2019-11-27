@@ -103,7 +103,7 @@ class HTMLReporter(Plugin):
         sorted_test_results = self._sort_test_results()
 
         context = {
-            'test_report_title': 'Test Report',
+            'test_report_title': self._config['test_report_title'] or 'Test Report',
             'test_summary': self.summary_stats,
             'test_results': sorted_test_results,
             'autocomplete_terms': json.dumps(self._generate_search_terms()),
