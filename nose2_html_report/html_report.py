@@ -20,7 +20,7 @@ class HTMLReporter(Plugin):
         super(HTMLReporter, self).__init__(*args, **kwargs)
         self.summary_stats = {'total': 0}
         self.test_results = []
-        default_template_path = os.path.join(os.path.dirname(__file__), 'templates', 'report.html') 
+        default_template_path = os.path.join(os.path.dirname(__file__), 'templates', 'report.html')
 
         self._config = {
             'report_path': os.path.realpath(self.config.as_str('path', default='report.html')),
@@ -102,7 +102,8 @@ class HTMLReporter(Plugin):
         sorted_test_results = self._sort_test_results()
 
         context = {
-            'test_report_title': self._config['test_report_title'] or 'Test Report',
+            'test_report_title': self._config.get('test_report_title',
+                                                  'Test Report'),
             'test_summary': self.summary_stats,
             'test_results': sorted_test_results,
             'autocomplete_terms': json.dumps(self._generate_search_terms()),
